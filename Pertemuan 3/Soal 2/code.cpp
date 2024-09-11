@@ -42,7 +42,7 @@ int main() {
 	}
 	
 	// Keluarkan output dari program
-	cout << "bilangan terbesar adalah: "<<output;
+	cout << "bilangan terbesar adalah: "<<output<<endl;
 	
 	return 0;
 }
