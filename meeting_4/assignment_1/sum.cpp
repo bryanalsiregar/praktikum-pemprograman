@@ -4,11 +4,11 @@
 
 using namespace std;
 
-#define ull unsigned long long 
+#define ll long long 
 
-ull sum_func(ull n) {
-    ull out = 0;
-    for (ull i = 1; i <= n; i++) {
+ll sum_func(ll n) {
+    ll out = 0;
+    for (ll i = 1; i <= n; i++) {
         out+= i;
     }
 
@@ -16,7 +16,7 @@ ull sum_func(ull n) {
 }
 
 int run_func() {
-    ull i;
+    ll i;
     cin >> i;
     cout << "Sum = " << sum_func(i) << endl;
 
@@ -25,8 +25,10 @@ int run_func() {
 
 int test_func() {
     ifstream testFile("test.txt");
-    int input;
+    string line;
+    string input;
     string expected_output;
+    int count = 0;
 
     if (!testFile) {
         cerr << "Error: Could not open test.txt" << endl;
@@ -34,15 +36,24 @@ int test_func() {
     }
 
     int test_num = 1;
-    while (testFile >> input && getline(testFile >> ws, expected_output)) {
-        string output = to_string(sum_func(input));
-        if (output == expected_output) {
-            cout << "Test " << test_num << " passed!" << endl;
-        } else {
-            cout << "Test " << test_num << " failed. Expected: \"" 
-                      << expected_output << "\", Got: \"" << output << "\"" << endl;
+    while (getline(testFile, line)) {
+        if (count == 0) { 
+            input = line;
+            count++;
         }
-        test_num++;
+        else if (count == 1) {
+            expected_output = line;
+            count++;
+            string output = to_string(sum_func(stoi(input)));
+            if (output == expected_output) {
+                cout << "Test " << test_num << " passed!" << endl;
+            } else {
+                cout << "Test " << test_num << " failed. Expected: \"" 
+                        << expected_output << "\", Got: \"" << output << "\"" << endl;
+            }
+            test_num++;
+            count = 0;
+        } 
     }
 
     testFile.close();
