@@ -1,31 +1,23 @@
-# This is a simple Makefile for compiling code.cpp
-
-# Compiler to use
+# Variables
 CXX = g++
+CXXFLAGS = -Wall 
+TARGET = biggest_num # compile file name ex: file
+SRC = biggest_num.cpp # source c++ code ex: file.cpp
 
-# Compiler flags
-CXXFLAGS = -Wall -g
-
-# Name of the output executable
-TARGET = code
-
-# Source files
-SRCS = code.cpp
-
-# Object files (corresponding to source files)
-OBJS = $(SRCS:.cpp=.o)
-
-# Default target
+# Default target: compile the program
 all: $(TARGET)
 
-# Link the object files to create the executable
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+# Compile the fibonacci.cpp
+$(TARGET): $(SRC)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
 
-# Compile the source files into object files
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean up build files
+run: $(TARGET)
+	 ./$(TARGET)
+
+# Clean up the compiled files
 clean:
-	rm -f $(TARGET) $(OBJS)
+	rm -f $(TARGET)
+
+# Phony targets to avoid conflicts
+.PHONY: all clean test
