@@ -1,31 +1,26 @@
-# This is a simple Makefile for compiling code.cpp
-
-# Compiler to use
+# Variables
 CXX = g++
+CXXFLAGS = -Wall 
+TARGET = payslip_calculation # compile file name ex: file
+SRC = payslip_calculation.cpp # source c++ code ex: file.cpp
 
-# Compiler flags
-CXXFLAGS = -Wall -g
-
-# Name of the output executable
-TARGET = code
-
-# Source files
-SRCS = code.cpp
-
-# Object files (corresponding to source files)
-OBJS = $(SRCS:.cpp=.o)
-
-# Default target
+# Default target: compile the program
 all: $(TARGET)
 
-# Link the object files to create the executable
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+# Compile the cpp folder
+$(TARGET): $(SRC)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC)
 
-# Compile the source files into object files
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Run the program in test mode (using test.txt)
+test: $(TARGET)
+	./$(TARGET) test
 
-# Clean up build files
+run: $(TARGET)
+	 ./$(TARGET)
+
+# Clean up the compiled files
 clean:
-	rm -f $(TARGET) $(OBJS)
+	rm -f $(TARGET)
+
+# Phony targets to avoid conflicts
+.PHONY: all clean test

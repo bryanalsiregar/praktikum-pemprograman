@@ -1,0 +1,27 @@
+Adi 1000000 100000 100000
+Payslip for Employee
+---------------------
+Name: Adi
+Gross Salary: Rp1.000.000,00
+Tax (20%): Rp200.000,00
+Installment: Rp100.000,00
+Insurance: Rp100.000,00
+Net Salary: Rp600.000,00
+Bryan 0 0 0
+Payslip for Employee
+---------------------
+Name: Bryan
+Gross Salary: Rp0,00
+Tax (20%): Rp0,00
+Installment: Rp0,00
+Insurance: Rp0,00
+Net Salary: Rp0,00
+Caca 1000000000 1 1
+Payslip for Employee
+---------------------
+Name: Caca
+Gross Salary: Rp1.000.000.000,00
+Tax (20%): Rp200.000.000,00
+Installment: Rp1,00
+Insurance: Rp1,00
+Net Salary: Rp799.999.998,00
