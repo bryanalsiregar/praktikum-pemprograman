@@ -13,7 +13,7 @@
     5. Jika nilai i mod 5 = 0, jadikan vector dengan index i sebagai "Buzz"
     6. Jika tidak masuk langkah 3, 4, dan 5, jadikan vector dengan i sebagai i dengan tipe string
     7. Tambahkan nilai i dengan 1
-    9. Jika  nilai i kurang dari 100, ulangi proses dari nomor 3
+    9. Jika  nilai i kurang dari sama dengan 100, ulangi proses dari nomor 3
     9. Keluarkan vector out
 
 */
