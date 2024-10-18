@@ -1,29 +1,11 @@
-# Template untuk README
+# Pengerjaan Tugas 1
 
-**Ini kata tebal (bold)**
-_ini kata miring (italic)_
+**Soal:**
 
-- list 1
-    - sublist 1
-    - sublist 2
-- list 2
-    - sublist 1
-    - sublist 2
-- list 3
-    - sublist 1
-    - sublist 2
+**Problem 1: Pencatatan Barang**
 
-```bash
-$ ini untuk output terminal dalam bentuk bash
-```
-
-```c++
-#include<iostream>
-
-using namespace std;
-
-int main() {
-    cout << "ini untuk codingan c++" << endl;
-    return 0;
-}
-```
+Buatlah sebuah program pencatatan barang pada swalayan dengan memanfaatkan array dan
+struct. Program tersebut meminta input berupa kode barang, nama barang, harga barang,
+dan jumlah barang. Buatlah input barang sejumlah “n” masukan (n ditentukan oleh
+pengguna sendiri, maksimal 50), kemudian **tampilkan jumlah semua barang dan harga
+rata-rata barang!**

@@ -11,9 +11,9 @@ Banyaknya barang tidak valid!
 Barang melampaui kapasitas!
 1
 inikodebarang ininamabarang 0 5
-5 0
+5 0.000000
 3
 kode1 barang1 1 3
 kode2 barang2 2 2
 kode3 barang3 3 1
-6 1
+6 1.666667
