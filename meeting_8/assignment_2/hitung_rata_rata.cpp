@@ -53,6 +53,7 @@ int test_func() {
     int n_input; // untuk menampung input banyaknya barang pada test.txt
     string input; // untuk menampung anggota vektor pada baris test.txt 
     int count = 0; // indikasi apakah baris tersebut merupakan input atau output
+    string output;
 
     
 
@@ -73,9 +74,8 @@ int test_func() {
         if (count == 0) { // indikasi jika input
             // inisialisasi baris
             n_input = stoi(line);
-            count++; 
-        } else if (count == 1) { // indikasi jika input barang
-            string output;
+            count++;
+        } else if (count == 1) {
             if (n_input > 0) {
                 float x[n_input];
                 int i = 0;
@@ -86,12 +86,15 @@ int test_func() {
                 }
                 // melakukan pencatatan barang pada input
                 output = to_string(hitung_rata_rata(x, 0, n_input, n_input-1));
-            } else if (n_input == 0) {
+            }
+            count++;
+        } else if (count == 2) { // indikasi jika input barang
+            if (n_input == 0) {
                 float x[n_input];
                 float r = hitung_rata_rata(x, 0, n_input, n_input-1);
 
                 output = to_string(r);
-            } else {
+            } else if (n_input < 0) {
                 float x[n_input];
                 float r = hitung_rata_rata(x, 0, n_input, n_input-1);
 
