@@ -1,29 +1,8 @@
-# Template untuk README
+# Pengerjaan Tugas 1
 
-**Ini kata tebal (bold)**
-_ini kata miring (italic)_
+**Soal:**
 
-- list 1
-    - sublist 1
-    - sublist 2
-- list 2
-    - sublist 1
-    - sublist 2
-- list 3
-    - sublist 1
-    - sublist 2
+**Problem 1: Bilangan Fibonacci**
 
-```bash
-$ ini untuk output terminal dalam bentuk bash
-```
-
-```c++
-#include<iostream>
-
-using namespace std;
-
-int main() {
-    cout << "ini untuk codingan c++" << endl;
-    return 0;
-}
-```
+Buatlah program untuk menampilkan bilangan fibonaci ke-n, dengan n adalah input
+dari pengguna menggunakan konsep rekursi.
