@@ -1,8 +1,8 @@
 # Variables
 CXX = g++
 CXXFLAGS = -Wall 
-TARGET =  your_code_name # compile file name ex: file
-SRC =  your_code_name.cpp # source c++ code ex: file.cpp
+TARGET =  sorting_data # compile file name ex: file
+SRC =  sorting_data.cpp # source c++ code ex: file.cpp
 
 # Default target: compile the program
 all: $(TARGET)

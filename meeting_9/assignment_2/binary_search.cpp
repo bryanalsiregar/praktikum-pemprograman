@@ -15,13 +15,32 @@ const vector<string> nama = {
 		"Achmad Yaumil Fadjri R.", "Alivia Rahma Pramesti", "Ari Lutfianto", "Arief Budiman"};
 const int n = 7;
 
+vector<int> index_insertion_sort(vector<long long> data, int n) {
+	vector<int> idx = {0, 1, 2, 3, 4, 5, 6};
+	int i, temp_idx;
+	long long temp;
+	for (int i = 0; i < n; i++) idx[i] = i;
+
+	for (int j=1; j < n; j++) {
+		i = j-1;
+		temp = data[j];
+		temp_idx = idx[j];
+		while (data[i]>temp&&i>=0) {
+			data[i+1] = data[i];
+			idx[i+1] = idx[i];
+			i--;
+		}
+		data[i+1] = temp;
+		idx[i+1] = temp_idx;
+	}
+	return idx;
+}
 
 int index_binary_search(vector<long long> data, int n, long long query) {
 	bool found = false;
 	int i = 0, j = n, k, idx=-1;
 	while (!found&&i<=j) {
 		k = (i+j)/2;
-		cout << k << endl;
 		if (data[k] < query) {
 			i = k+1;
 		} else if (data[k] == query) {
@@ -35,22 +54,29 @@ int index_binary_search(vector<long long> data, int n, long long query) {
 	return idx;
 }
 
-int main() {
-	vector<int> idx_sorted = index_insertion_sort(nisn, 7);
-	vector<long long> new_nisn = {0, 0, 0, 0, 0, 0, 0};
-	vector<string> new_nama = {"", "", "", "", "", "", ""};
-	for (int i = 0; i < 7; i++) {new_nisn[i] = nisn[idx_sorted[i]]; new_nama[i] = nama[idx_sorted[i]];}
-
-    int idx = index_binary_search(new_nisn, 7, 9950310962);
-
-	cout << new_nama[idx] << endl;
-    return 0;
-}
-
 int run_func() {
     /*
         Fungsi ini digunakan untuk menjalankan program tanpa test.txt
     */
+    vector<int> idx_sorted = index_insertion_sort(nisn, 7);
+	vector<long long> new_nisn = {0, 0, 0, 0, 0, 0, 0};
+	vector<string> new_nama = {"", "", "", "", "", "", ""};
+    vector<long long> new_nilai = {0, 0, 0, 0, 0, 0, 0};
+	for (int i = 0; i < 7; i++) {
+        new_nisn[i] = nisn[idx_sorted[i]]; 
+        new_nama[i] = nama[idx_sorted[i]];
+        new_nilai[i] = nilai[idx_sorted[i]];
+    }
+
+
+    long long query = 9950310962;
+    int idx = index_binary_search(new_nisn, 7, query);
+
+    cout << "Search dengan binary search untuk nisn " << query << " dengan informasinya" << endl;
+    cout << "NISN: " << new_nisn[idx] << endl;
+    cout << "Nama: " << new_nama[idx] << endl;
+    cout << "Nilai: " << new_nilai[idx] << endl;
+
     return 0;
 }
 

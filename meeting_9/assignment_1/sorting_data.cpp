@@ -75,23 +75,157 @@ vector<int> index_insertion_sort(vector<long long> data, int n) {
 	return idx;
 }
 
-int main() {
-	vector<int> idx_sorted = index_insertion_sort(nisn, 7);
-	vector<long long> new_nisn = {0, 0, 0, 0, 0, 0, 0};
-	vector<string> new_nama = {"", "", "", "", "", "", ""};
-	for (int i = 0; i < 7; i++) {new_nisn[i] = nisn[idx_sorted[i]]; new_nama[i] = nama[idx_sorted[i]];}
-
-    int idx = index_binary_search(new_nisn, 7, 9950310962);
-
-	cout << new_nama[idx] << endl;
-    return 0;
-}
-
 int run_func() {
     /*
         Fungsi ini digunakan untuk menjalankan program tanpa test.txt
     */
+	vector<long long> new_nisn = {0, 0, 0, 0, 0, 0, 0};
+	vector<string> new_nama = {"", "", "", "", "", "", ""};
+	vector<long long> new_nilai = {0, 0, 0, 0, 0, 0, 0};
+	vector<int> idx_sorted;
+
+	cout << "Pengurutan data dengan bubble sort" << endl;
+	cout << "Urutan berdasarkan NISN" << endl;
+	idx_sorted = index_bubble_sort(nisn, 7);
 	
+	for (int i = 0; i < 7; i++) {
+		new_nisn[i] = nisn[idx_sorted[i]]; 
+		new_nama[i] = nama[idx_sorted[i]];
+		new_nilai[i] = nilai[idx_sorted[i]];
+	}
+	
+	cout << "NISN: ";
+	for (int i = 0; i < 7; i++) cout << new_nisn[i] << " ";
+	cout << endl;
+	
+	cout << "Nama: ";
+	for (int i = 0; i < 7; i++) cout << new_nama[i] << " ";
+	cout << endl;	
+	
+	cout << "Nilai: ";
+	for (int i = 0; i < 7; i++) cout << new_nilai[i] << " ";
+	
+	cout << endl;
+	cout << endl;
+
+	cout << "Urutan berdasarkan Nilai" << endl;
+	idx_sorted = index_bubble_sort(nilai, 7);
+	
+	for (int i = 0; i < 7; i++) {
+		new_nisn[i] = nisn[idx_sorted[i]]; 
+		new_nama[i] = nama[idx_sorted[i]];
+		new_nilai[i] = nilai[idx_sorted[i]];
+	}
+	
+	cout << "NISN: ";
+	for (int i = 0; i < 7; i++) cout << new_nisn[i] << " ";
+	cout << endl;
+	
+	cout << "Nama: ";
+	for (int i = 0; i < 7; i++) cout << new_nama[i] << " ";
+	cout << endl;	
+	
+	cout << "Nilai: ";
+	for (int i = 0; i < 7; i++) cout << new_nilai[i] << " ";
+
+	cout << endl;
+	cout << endl;
+
+	cout << "Pengurutan data dengan selection sort" << endl;
+	cout << "Urutan berdasarkan NISN" << endl;
+	idx_sorted = index_selection_sort(nisn, 7);
+	
+	for (int i = 0; i < 7; i++) {
+		new_nisn[i] = nisn[idx_sorted[i]]; 
+		new_nama[i] = nama[idx_sorted[i]];
+		new_nilai[i] = nilai[idx_sorted[i]];
+	}
+	
+	cout << "NISN: ";
+	for (int i = 0; i < 7; i++) cout << new_nisn[i] << " ";
+	cout << endl;
+	
+	cout << "Nama: ";
+	for (int i = 0; i < 7; i++) cout << new_nama[i] << " ";
+	cout << endl;	
+	
+	cout << "Nilai: ";
+	for (int i = 0; i < 7; i++) cout << new_nilai[i] << " ";
+	
+	cout << endl;
+	cout << endl;
+
+	cout << "Urutan berdasarkan Nilai" << endl;
+	idx_sorted = index_selection_sort(nilai, 7);
+	
+	for (int i = 0; i < 7; i++) {
+		new_nisn[i] = nisn[idx_sorted[i]]; 
+		new_nama[i] = nama[idx_sorted[i]];
+		new_nilai[i] = nilai[idx_sorted[i]];
+	}
+	
+	cout << "NISN: ";
+	for (int i = 0; i < 7; i++) cout << new_nisn[i] << " ";
+	cout << endl;
+	
+	cout << "Nama: ";
+	for (int i = 0; i < 7; i++) cout << new_nama[i] << " ";
+	cout << endl;	
+	
+	cout << "Nilai: ";
+	for (int i = 0; i < 7; i++) cout << new_nilai[i] << " ";
+
+	cout << endl;
+	cout << endl;
+
+	cout << "Pengurutan data dengan insertion sort" << endl;
+	cout << "Urutan berdasarkan NISN" << endl;
+	idx_sorted = index_insertion_sort(nisn, 7);
+	
+	for (int i = 0; i < 7; i++) {
+		new_nisn[i] = nisn[idx_sorted[i]]; 
+		new_nama[i] = nama[idx_sorted[i]];
+		new_nilai[i] = nilai[idx_sorted[i]];
+	}
+	
+	cout << "NISN: ";
+	for (int i = 0; i < 7; i++) cout << new_nisn[i] << " ";
+	cout << endl;
+	
+	cout << "Nama: ";
+	for (int i = 0; i < 7; i++) cout << new_nama[i] << " ";
+	cout << endl;	
+	
+	cout << "Nilai: ";
+	for (int i = 0; i < 7; i++) cout << new_nilai[i] << " ";
+	
+	cout << endl;
+	cout << endl;
+
+	cout << "Urutan berdasarkan Nilai" << endl;
+	idx_sorted = index_insertion_sort(nilai, 7);
+	
+	for (int i = 0; i < 7; i++) {
+		new_nisn[i] = nisn[idx_sorted[i]]; 
+		new_nama[i] = nama[idx_sorted[i]];
+		new_nilai[i] = nilai[idx_sorted[i]];
+	}
+	
+	cout << "NISN: ";
+	for (int i = 0; i < 7; i++) cout << new_nisn[i] << " ";
+	cout << endl;
+	
+	cout << "Nama: ";
+	for (int i = 0; i < 7; i++) cout << new_nama[i] << " ";
+	cout << endl;	
+	
+	cout << "Nilai: ";
+	for (int i = 0; i < 7; i++) cout << new_nilai[i] << " ";
+
+	cout << endl;
+	cout << endl;
+
+
     return 0;
 }
 
