@@ -5,12 +5,12 @@
 using namespace std; // Untuk menyingkat pemanggilan subprogram standar
 
 // data yang disediakan soal
-const vector<long long> nisn = {9960312699, 9963959682, 9950310962, 9970272750, 9970293945, 9952382180, 9965653989};
-const vector<long long> nilai = {90, 55, 80, 60, 70, 65, 60};
-const vector<string> nama = {
+vector<long long> nisn = {9960312699, 9963959682, 9950310962, 9970272750, 9970293945, 9952382180, 9965653989};
+vector<long long> nilai = {90, 55, 80, 60, 70, 65, 60};
+vector<string> nama = {
 		"Handi Ramadhan", "Rio Alfandra", "Ronaldo Valentino Uneputty", 
 		"Achmad Yaumil Fadjri R.", "Alivia Rahma Pramesti", "Ari Lutfianto", "Arief Budiman"};
-const int n = 7;
+int n = 7;
 
 
 vector<int> index_sequential_search(vector<long long> data, int n, long long query) {
