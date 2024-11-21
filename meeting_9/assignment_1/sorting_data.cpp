@@ -1,6 +1,8 @@
 #include<iostream> // Digunakan untuk mengatur input dan output
 #include<string> // Digunakan untuk menggunakan data struktur string
 #include<vector> // Digunakan untuk menggunakan data tipe vector
+#include<fstream> // untuk membuka file test.txt
+#include<sstream> // untuk mendapatkan kata dalam string
 
 using namespace std; // Untuk menyingkat pemanggilan subprogram standar
 
@@ -17,7 +19,8 @@ vector<int> index_bubble_sort(vector<long long> data, int n) {
 		Fungsi ini mengembalikan index dengan tipe vector dengan parameter data dan banyaknya data sebagai n.
 		Fungsi ini digunakan untuk menyelesaikan permasalahan dengan bubble sort.
 	*/
-	vector<int> idx = {0, 1, 2, 3, 4, 5, 6}; // inisialisasi index
+	vector<int> idx; // deklarasi index
+	for (int i = 0; i < n; i++) idx.push_back(i); // inisialisasi index dengan banyaknya data
 	int temp_idx; // untuk swap index
 	long long temp; // untuk swap data
 
@@ -39,13 +42,13 @@ vector<int> index_bubble_sort(vector<long long> data, int n) {
 	return idx;
 } 
 
-
 vector<int> index_selection_sort(vector<long long> data, int n) {
 	/*
 		Fungsi ini mengembalikan index dengan tipe vector dengan parameter data dan banyaknya data sebagai n.
 		Fungsi ini digunakan untuk menyelesaikan permasalahan dengan selection sort.
 	*/
-	vector<int> idx = {0, 1, 2, 3, 4, 5, 6}; // inisialisasi index
+	vector<int> idx; // deklarasi index
+	for (int i = 0; i < n; i++) idx.push_back(i); // inisialisasi index dengan banyaknya data
 	int temp_idx, min; // deklarasi variabel sementara index dan min pada data
 	long long temp; // deklarasi variabel untuk swapping
 
@@ -76,7 +79,8 @@ vector<int> index_insertion_sort(vector<long long> data, int n) {
 		Fungsi ini mengembalikan index dengan tipe vector dengan parameter data dan banyaknya data sebagai n.
 		Fungsi ini digunakan untuk menyelesaikan permasalahan dengan insertion sort.
 	*/
-	vector<int> idx = {0, 1, 2, 3, 4, 5, 6}; // inisialisasi index
+	vector<int> idx; // deklarasi index
+	for (int i = 0; i < n; i++) idx.push_back(i); // inisialisasi index dengan banyaknya data
 	int i, temp_idx; // deklarasi untuk pengulangan dan swapping index
 	long long temp; // deklarasi untuk swapping data
 
@@ -267,7 +271,119 @@ int test_func() {
     /*
         Fungsi ini digunakan untuk menjalankan program dengan test.txt
     */
-    return 0;
+    ifstream testFile("test.txt"); // inisialialisi pembukaan file test.txt
+    string line; // untuk menampung baris pada test.txt
+    vector<long long> expected_output; // untuk menampung angka output pada test.txt
+    vector<long long> vec_input; // untuk menampung angka input pada test.txt
+    int input; // untuk menampung anggota vektor pada baris test.txt 
+    int count = 0; // indikasi apakah baris tersebut merupakan input atau output
+	int n_in; // untuk mengambil banyaknya data pada test.txt
+
+    // periksa apakah file test.txt dapat dibuka
+    if (!testFile) {
+        // jika tidak bisa dibuka, akan menampilkan error
+        cerr << "Error: Could not open test.txt" << endl;
+        // indikasi fungsi ini tidak berjalan normal
+        return 1;
+    }
+
+    // indikasi test ke berapa
+    int test_num = 1;
+    // pengulangan untuk mengambil baris pada test.txt
+    while (getline(testFile, line)) {
+        // indikasi jika baris adalah input atau output
+        if (count == 0) { // indikasi jika input
+            // inisialisasi baris
+            istringstream iss(line);
+			// indikasi apakah menginput data atau banyaknya data
+            int count2 = 0;
+			// pengulangan kolom anggota untuk dijadikan dalam tipe int dan ditambahkan pada vec_input
+            while (iss >> input) {
+				switch (count2) {
+					// jika input banyaknya data
+					case 0: n_in = input; count2++; break;
+					// jika bukan
+					default: vec_input.push_back(input);
+				}
+			}
+            // mengubah indikasi
+            count++;
+        } else if (count == 1) { // indikasi jika output
+			// inisialisasi baris
+			istringstream iss(line);
+			// pengulangan kolom anggota untuk dijadikan dalam tipe int dan ditambahkan pada expected_output
+			while (iss >> input) expected_output.push_back(input);
+			// melakukan test untuk ketiga algoritma sorting
+			for (int i = 0; i < 3; i++) {
+				if (i == 0) {
+					cout << "Test Bubble Sort" << endl;
+					// melakukan bubble sort pada input
+					vector<int> output = index_bubble_sort(vec_input, n_in);
+					// mengubah index menjadi data input pada test.txt
+					vector<long long> new_output;
+					for (int id: output) new_output.push_back(vec_input[id]);
+				
+					// periksa apabila output pada output bubble sort sama dengan output yang diinginkan di test.txt
+					if (new_output == expected_output) {
+						// Jika sama dengan, tampilkan ini
+						cout << "Test " << test_num << " passed!" << endl;
+					} else {
+						// Jika tidak sama dengan, tampilkan ini
+						cout << "Test " << test_num << " failed. Expected: \"" 
+								<< line << "\", Got: \""; 
+						for (int otr: new_output) cout << otr << " "; 
+						cout << "\"" << endl;
+					}
+				} else if (i == 1) {
+					cout << "Test Selection Sort" << endl;
+					// melakukan selection sort pada input
+					vector<int> output = index_selection_sort(vec_input, n_in);
+					// mengubah index menjadi data
+					vector<long long> new_output;
+					for (int id: output) new_output.push_back(vec_input[id]);
+					// periksa apabila output pada fungsi selection sort sama dengan output yang diinginkan di test.txt
+					if (new_output == expected_output) {
+						// Jika sama dengan, tampilkan ini
+						cout << "Test " << test_num << " passed!" << endl;
+					} else {
+						// Jika tidak sama dengan, tampilkan ini
+						cout << "Test " << test_num << " failed. Expected: \"" 
+								<< line << "\", Got: \""; 
+						for (int otr: new_output) cout << otr << " "; 
+						cout << "\"" << endl;
+					}
+				} else if (i == 2) {
+					cout << "Test Insertion Sort" << endl;
+					// melakukan insertion sort pada input
+					vector<int> output = index_insertion_sort(vec_input, n_in);
+					// mengubah index menjadi data dengan data input test.txt
+					vector<long long> new_output;
+					for (int id: output) new_output.push_back(vec_input[id]);
+					// periksa apabila output pada fungsi insertion sort sama dengan output yang diinginkan di test.txt
+					if (new_output == expected_output) {
+						// Jika sama dengan, tampilkan ini
+						cout << "Test " << test_num << " passed!" << endl;
+					} else {
+						// Jika tidak sama dengan, tampilkan ini
+						cout << "Test " << test_num << " failed. Expected: \"" 
+								<< line << "\", Got: \""; 
+						for (int otr: new_output) cout << otr << " "; 
+						cout << "\"" << endl;
+					}
+				}
+				
+			}
+
+            test_num++; // lanjut ke tes selanjutnya
+            vec_input = {}; // reset vec_input
+            expected_output = {}; // reset output untuk menampung output test.txt
+            count = 0; // kembali ke mode input
+        } 
+    }
+
+    testFile.close(); // menutup file test.txt
+
+    return 0; // indikasi fungsi ini berjalan berhasil
 }
 
 int main(int argc, char *argv[]) {

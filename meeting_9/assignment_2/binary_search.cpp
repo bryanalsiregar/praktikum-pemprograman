@@ -1,6 +1,8 @@
 #include<iostream> // Digunakan untuk mengatur input dan output
 #include<string> // Digunakan untuk menggunakan data struktur string
 #include<vector> // Digunakan untuk menggunakan data tipe vector
+#include<fstream> // untuk membuka file test.txt
+#include<sstream> // untuk mendapatkan kata dalam string
 
 using namespace std; // Untuk menyingkat pemanggilan subprogram standar
 
@@ -102,7 +104,79 @@ int test_func() {
     /*
         Fungsi ini digunakan untuk menjalankan program dengan test.txt
     */
-    return 0;
+    ifstream testFile("test.txt"); // inisialialisi pembukaan file test.txt
+    string line; // untuk menampung baris pada test.txt
+    int expected_output; // untuk menampung angka output pada test.txt
+    vector<long long> vec_input; // untuk menampung angka input pada test.txt
+    int input; // untuk menampung anggota vektor pada baris test.txt 
+    int count = 0; // indikasi apakah baris tersebut merupakan input atau output
+	int n_in; // untuk mengambil banyaknya data pada test.txt
+	int q_in; // untuk mengambil query pada test.txt
+
+    // periksa apakah file test.txt dapat dibuka
+    if (!testFile) {
+        // jika tidak bisa dibuka, akan menampilkan error
+        cerr << "Error: Could not open test.txt" << endl;
+        // indikasi fungsi ini tidak berjalan normal
+        return 1;
+    }
+
+    // indikasi test ke berapa
+    int test_num = 1;
+    // pengulangan untuk mengambil baris pada test.txt
+    while (getline(testFile, line)) {
+        // indikasi jika baris adalah input atau output
+        if (count == 0) { // indikasi jika input
+            // inisialisasi baris
+            istringstream iss(line);
+			// indikasi apakah menginput data, banyaknya data, atau query
+            int count2 = 0;
+			// pengulangan kolom anggota untuk dijadikan dalam tipe int dan ditambahkan pada vec_input
+            while (iss >> input) {
+				// jika menginput banyaknya data
+				if (count2 == 0) {
+					n_in = input; 
+					count2++;
+				// jika menginput query
+				} else if (count2 == n_in+1) {
+					q_in = input;
+				// jika menginput data
+				} else {
+					vec_input.push_back(input); 
+					count2++;
+				}
+			}
+            // mengubah indikasi
+            count++;
+        } else if (count == 1) { // indikasi jika output
+			// mengubah baris untuk output menjadi int
+			expected_output = stoi(line);
+
+			// melakukan binary search pada input
+			int output = index_binary_search(vec_input, n_in, q_in);
+				
+			// periksa apabila output pada output binary search sama dengan output yang diinginkan di test.txt
+			if (output == expected_output) {
+				// Jika sama dengan, tampilkan ini
+				cout << "Test " << test_num << " passed!" << endl;
+			} else {
+				// Jika tidak sama dengan, tampilkan ini
+				cout << "Test " << test_num << " failed. Expected: \"" 
+						<< line << "\", Got: \""; 
+				cout << output << " "; 
+				cout << "\"" << endl;
+			}
+
+            test_num++; // lanjut ke tes selanjutnya
+            vec_input = {}; // reset vec_input
+            expected_output = {}; // reset output untuk menampung output test.txt
+            count = 0; // kembali ke mode input
+        } 
+    }
+
+    testFile.close(); // menutup file test.txt
+
+    return 0; // indikasi fungsi ini berjalan berhasil
 }
 
 int main(int argc, char *argv[]) {
