@@ -1,29 +1,19 @@
-# Template untuk README
+# Pengerjaan Tugas 1
 
-**Ini kata tebal (bold)**
-_ini kata miring (italic)_
+**Soal:**
 
-- list 1
-    - sublist 1
-    - sublist 2
-- list 2
-    - sublist 1
-    - sublist 2
-- list 3
-    - sublist 1
-    - sublist 2
+**Problem 1: Sorting**
+| **NISN** | **Nama** | **Nilai** | 
+|----------|----------|-----------|
+9960312699 |  Handi Ramadhan | 90 
+9963959682 | Rio Alfandra | 55 
+9950310962 | Ronaldo Valentino Uneputty | 80 
+9970272750 | Achmad Yaumil Fadjri R. | 60 
+9970293945 | Alivia Rahma Pramesti | 70 
+9952382180 | Ari Lutfianto | 65 
+9965653989 | Arief Budiman | 60 
 
-```bash
-$ ini untuk output terminal dalam bentuk bash
-```
-
-```c++
-#include<iostream>
-
-using namespace std;
-
-int main() {
-    cout << "ini untuk codingan c++" << endl;
-    return 0;
-}
-```
+Urutkan data tersebut dengan urutan menaik berdasarkan:
+- NISN
+- Nilai
+dengan menggunakan metode pengurutan penyisipan, seleksi, dan gelembung.
