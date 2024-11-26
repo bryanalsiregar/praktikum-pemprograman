@@ -11,7 +11,7 @@ int temukan_bilangan_terbesar_kedua(int data[], int n) {
         menemukan bilangan terbesar kedua
     */
     // inisiasi terbesar dan terbesar kedua
-    int terb_1 = data[0], terb_2 = data[0];
+    int terb_1 = data[1], terb_2 = data[0];
     
     // pengulangan tiap angka pada data
     for (int i = 0; i < n; i++) {
@@ -92,7 +92,7 @@ void test_func() {
     // inisiasi test 5
     test_num = "Test #5";
     n = 2;
-    int data_5[] = {4, 10};
+    int data_5[] = {10, 4};
     trbs_2_exp = 4;
     // mengecek apakah keluaran fungsi penyelesaian sesuai dengan yang diharapkan
     if (temukan_bilangan_terbesar_kedua(data_5, n) == trbs_2_exp) cout << test_num << " Passed!" << endl;
