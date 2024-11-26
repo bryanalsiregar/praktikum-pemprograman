@@ -2,7 +2,7 @@ Soal
 
 Temukan Bilangan Terbesar Kedua
 
-Tulis program untuk memeriksa apakah suatu string adalah palindrom.
+Tulis program untuk menemukan bilangan terbesar kedua dalam daftar.
 
 1. Mulai
 2. Masukkan daftar bilangan
