@@ -33,16 +33,9 @@ class MerekMobil {
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            System.out.print("Masukkan Angka:");
-            int angka = sc.nextInt();
-            if (angka % 2 == 0) {
-                System.out.println("Angka "+angka+" adalah Genap!");
-            } else {
-                System.out.println("Angka "+angka+" adalah Ganjil!");
-            }
-        }
-        sc.close();
+       String txt = "Hello";
+    System.out.println(txt.
+        length
+        );
     }
 }
