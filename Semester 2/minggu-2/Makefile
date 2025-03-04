@@ -1,8 +1,8 @@
 # Variables
 CXX = g++
 CXXFLAGS = -Wall 
-TARGET =  linked_list # compile file name ex: file
-SRC =  linked_list.cpp # source c++ code ex: file.cpp
+TARGET =  assignment # compile file name ex: file
+SRC =  assignment.cpp # source c++ code ex: file.cpp
 
 # Default target: compile the program
 all: $(TARGET)
