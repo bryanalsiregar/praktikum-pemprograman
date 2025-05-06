@@ -30,7 +30,7 @@ Heap::Heap(int capacity) {
 void Heap::heapify(int i) {
 	int largest = i;
 	int left = 2*i + 1;
-	int right = 2*i + 3;
+	int right = 2*i + 2;
 
 	if (left < size && arr[left] < arr[largest])
 		largest = left;
@@ -62,7 +62,7 @@ void Heap::insertKey(int key) {
 
 int Heap::top() {
 	if (size == 0) {
-		cout << "Heap is empty/n";
+		cout << "Heap is empty\n";
 		return -1;
 	}
 	return arr[0];
@@ -70,7 +70,7 @@ int Heap::top() {
 
 int Heap::pop() {
 	if (size <= 0) {
-		cout << "Heap is empty/n";
+		cout << "Heap is empty\n";
 		return -1;
 	}
 
@@ -97,7 +97,7 @@ void Heap::deleteKey(int key) {
 	}
 
 	if (index == -1) {
-		cout << "Key not found/n";
+		cout << "Key not found\n";
 		return;
 	}
 
@@ -119,17 +119,56 @@ void Heap::printHeap() {
 	cout << "\n";
 }
 
-void Heap::increaseHeap(int oldValue, int newValue) {
+void Heap::increaseKey(int oldValue, int newValue) {
 	if (oldValue >= newValue) {
 		cout << "newValue harus lebih besar dari oldValue!" << endl;
 		return;
 	}
+
+	int index = -1;
+	for (int i = 0; i < size; i++) {
+		if (arr[i] == oldValue) {
+			index = i;
+			break;
+		}
+	}
+
+	if (index == -1) {
+		cout << "Key not found.\n";
+		return;
+	}
+
+	arr[index] = newValue;
+
+	heapify(index);
 }
 
 void Heap::decreaseKey(int oldValue, int newValue) {
 	if (oldValue <= newValue) {
 		cout << "newValue harus lebih kecil dari oldValue!" << endl;
 		return;
+	}
+
+	int index = -1;
+	for (int i = 0; i < size; i++) {
+		if (arr[i] == oldValue) {
+			index = i;
+			break;
+		}
+	}
+
+	if (index == -1) {
+		cout << "Key not found.\n";
+		return;
+	}
+
+	arr[index] = newValue;
+
+	int i = index;
+	
+	while (i != 0 && arr[(i-1)/2] > arr[i]) {
+		swap(arr[i], arr[(i-1)/2]);
+		i = (i-1)/2;
 	}
 }
 
@@ -155,6 +194,21 @@ int main() {
 	cout << "Heap after deleting 15:\n";
 	heap.printHeap();
 	cout << "Top element after deletion: " << heap.top() << "\n";
+	cout << "---------------------" << endl;
+	heap.insertKey(9);
+	heap.insertKey(18);
+	heap.insertKey(27);
+	heap.insertKey(78);
+	cout << "Heap after insertions again:\n";
+	heap.printHeap();
+	cout << "Increase key 3 menjadi 15: \n";
+	heap.increaseKey(3, 15);
+	heap.printHeap();
 	
+	cout << "Decrease key 78 menjadi 0: \n";
+	heap.decreaseKey(78, 0);
+	heap.printHeap();
+	
+
 	return 0;
 }
